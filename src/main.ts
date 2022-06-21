@@ -36,7 +36,9 @@ async function run(): Promise<void> {
         issue_number: issue
       })
 
-      const comments = resp.data.filter(cmt => cmt.body_text.includes(commentBody))
+      const comments = resp.data.filter(cmt =>
+        cmt.body_text?.includes(commentBody)
+      )
 
       for (const comment of comments) {
         console.log(

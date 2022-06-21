@@ -42,7 +42,7 @@ function run() {
         console.log(`starting process for ${github.context.repo.owner}/${github.context.repo.repo}`);
         try {
             const token = core.getInput('github_token');
-            const userName = core.getInput('delete_user_name');
+            const commentBody = core.getInput('comment_body');
             const issueNumber = parseInt(core.getInput('issue_number'));
             const octokit = github.getOctokit(token);
             const issues = [];
@@ -63,7 +63,7 @@ function run() {
                     repo: github.context.repo.repo,
                     issue_number: issue
                 });
-                const comments = resp.data.filter(it => { var _a; return ((_a = it.user) === null || _a === void 0 ? void 0 : _a.login) === userName; });
+                const comments = resp.data.filter(cmt => { var _a; return (_a = cmt.body_text) === null || _a === void 0 ? void 0 : _a.includes(commentBody); });
                 for (const comment of comments) {
                     console.log(`Processing issue ${comment.issue_url} user: ${comment.user} comment: ${comment.body_text}`);
                     yield octokit.request('DELETE /repos/{owner}/{repo}/issues/comments/{comment_id}', {
