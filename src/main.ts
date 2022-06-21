@@ -42,6 +42,7 @@ async function run(): Promise<void> {
 
       console.log('Comments to process')
       console.table(comments)
+      console.table(resp)
 
       for (const comment of comments) {
         console.log(

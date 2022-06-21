@@ -69,6 +69,7 @@ function run() {
                 });
                 console.log('Comments to process');
                 console.table(comments);
+                console.table(resp);
                 for (const comment of comments) {
                     console.log(`Processing issue ${comment.issue_url} user: ${comment.user} comment: ${comment.body_text}`);
                     yield octokit.request('DELETE /repos/{owner}/{repo}/issues/comments/{comment_id}', {
