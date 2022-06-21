@@ -1,17 +1,17 @@
-name: 'Delete Comment'
-description: 'delete comments from issue/pr by username'
-author: 'izhangzhihao'
+name: 'Delete comments by body text'
+description: 'delete comments from issue by body text'
+author: 'mieszkoWrzeszczynskiMtab'
 inputs:
   github_token:
     description: 'The GitHub token used to create an authenticated client'
     required: true
-  delete_user_name:
-    description: 'Github username to delete comments'
-    default: 'open-collective-bot[bot]'
-    required: false
+  comment_body:
+    description: 'The comment body text'
+    default: ''
+    required: true
   issue_number:
     description: 'Issue/PR on which to delete comments. If not provided, comments will be deleted across the repo.'
-    required: false
+    required: true
 runs:
   using: 'node12'
   main: 'dist/index.js'
