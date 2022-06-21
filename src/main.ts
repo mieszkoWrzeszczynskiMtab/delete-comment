@@ -36,9 +36,12 @@ async function run(): Promise<void> {
         issue_number: issue
       })
 
-      const comments = resp.data.filter(cmt =>
-        cmt.body_text?.includes(commentBody)
-      )
+      const comments = resp.data.filter(cmt => {
+        return cmt.body_text?.includes(commentBody)
+      })
+
+      console.log('Comments to process')
+      console.table(comments)
 
       for (const comment of comments) {
         console.log(
